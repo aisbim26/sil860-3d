@@ -1,13 +1,68 @@
 {
-  "version": 6,
+  "version": 7,
+  "checks": [
+    "Only T-prefixed map roots remain in terrain; only B-prefixed map roots remain in context",
+    "Approved structure unchanged",
+    "No original vegetation FBX used",
+    "Desktop terrain uses unchanged original-pixel crops",
+    "Phone buildings use 1024 pixels within 85 m and 512 pixels beyond; terrain retains full cropped pixel dimensions",
+    "Decoded image bitmaps released after GPU upload for both profiles"
+  ],
+  "textureBudget": {
+    "terrain": {
+      "uniqueImages": 2,
+      "downloadBytes": 28601828,
+      "rgbaMipsEstimate": 83291605
+    },
+    "context": {
+      "uniqueImages": 200,
+      "downloadBytes": 32590478,
+      "rgbaMipsEstimate": 938257067
+    },
+    "terrain-mobile": {
+      "uniqueImages": 2,
+      "downloadBytes": 6071661,
+      "rgbaMipsEstimate": 83291605
+    },
+    "context-mobile": {
+      "uniqueImages": 200,
+      "downloadBytes": 20438576,
+      "rgbaMipsEstimate": 468495019
+    },
+    "tree-high": {
+      "uniqueImages": 9,
+      "downloadBytes": 2506065,
+      "rgbaMipsEstimate": 100663296
+    },
+    "tree-medium": {
+      "uniqueImages": 2,
+      "downloadBytes": 1389829,
+      "rgbaMipsEstimate": 6291456
+    },
+    "tree-low": {
+      "uniqueImages": 2,
+      "downloadBytes": 1389829,
+      "rgbaMipsEstimate": 6291456
+    },
+    "roads": {
+      "uniqueImages": 3,
+      "downloadBytes": 153007,
+      "rgbaMipsEstimate": 4194304
+    }
+  },
+  "measurementNote": "RGBA plus mipmap estimates are not measured browser process or physical GPU memory",
   "files": {
     "car.glb": {
       "bytes": 59408,
       "sha256": "c8f55c00f698556058158ebd7c07e9ace8f48465f7d4e8bbc2585b07ca2af324"
     },
+    "context-mobile.glb": {
+      "bytes": 1283532,
+      "sha256": "8f1f6155f1f4815b13eb513645d72ebd88d48c41ac4c0a291ea228fefb7f1834"
+    },
     "context.glb": {
-      "bytes": 1361984,
-      "sha256": "6e89787017abd65414a4ea17e065c295bf8f3cd6f9219408071bc4b62f395dba"
+      "bytes": 1283292,
+      "sha256": "fccc1040d91226b237723a3680dad8864874109cd11b23c9e533a61af4133ca7"
     },
     "roads.glb": {
       "bytes": 433272,
@@ -17,9 +72,13 @@
       "bytes": 1323800,
       "sha256": "6ec40618aa96d9e80ce46ada534fcad883b83072e7dcaa36c9743d392c4d4dca"
     },
+    "terrain-mobile.glb": {
+      "bytes": 1177752,
+      "sha256": "6b03affaeb17ec034499d9a30d4142a49472399f1d661f6ce2e05050790486a0"
+    },
     "terrain.glb": {
-      "bytes": 4488852,
-      "sha256": "e57e66652be729a07124d6dc0b646ffbc3fa7a1c5a62c793881d85621e9dfaec"
+      "bytes": 1177768,
+      "sha256": "8d3ba06b837c5e18a9d146a5fc832992f685a5fdea122175ca3628ae4f707c6e"
     },
     "tram.glb": {
       "bytes": 171800,
@@ -29,56 +88,21 @@
       "bytes": 1283160,
       "sha256": "1fe6b8adff8b739292c1c6c6af7ea9b3f8f75189baf3831bf89e5fc9d58f84c3"
     },
-    "tree-low.glb": {
-      "bytes": 3260,
-      "sha256": "d49a62bb8c742394ddd15203e4f3d31bb2d71dbc41ee441b950def914ed13c71"
-    },
-    "tree-medium.glb": {
-      "bytes": 4920,
-      "sha256": "73ab00d699813c0cfc384a0182ee53543be441fc5230dc7777ea0dffc1b31030"
-    },
-    "context-mobile.glb": {
-      "bytes": 1363756,
-      "sha256": "aebfff7db5f340f939dddf38972f0e623448581dc10ba662604843d54477f7ed"
-    },
-    "terrain-mobile.glb": {
-      "bytes": 4490180,
-      "sha256": "e21b2cb558f4b9ba5b8454b2ffb694b691d6239dab4f00bd10e5f7299b8660d4"
-    },
     "tree-low-mobile.glb": {
       "bytes": 3276,
       "sha256": "fb5ab31f677b4483ae231144d76b6eb2d005b58d7e7dd1dd5ffe01672fa7ce10"
     },
+    "tree-low.glb": {
+      "bytes": 3260,
+      "sha256": "d49a62bb8c742394ddd15203e4f3d31bb2d71dbc41ee441b950def914ed13c71"
+    },
     "tree-medium-mobile.glb": {
       "bytes": 4932,
       "sha256": "e0c10661aa75aed06a74c7823cadb4db15f8e3ec3b9ac301b1fcab2690f2b5b5"
+    },
+    "tree-medium.glb": {
+      "bytes": 4920,
+      "sha256": "73ab00d699813c0cfc384a0182ee53543be441fc5230dc7777ea0dffc1b31030"
     }
-  },
-  "checks": [
-    "Approved V2 structure unchanged",
-    "Factory Street road surface derived from CAD kerb-enclosed polygons at 0.02 m snap precision",
-    "362 moving-car route samples have 1 m road clearance",
-    "Terrain source largest dimension 8192 pixels",
-    "Mobile asset set renders without browser errors at 390 x 844",
-    "No high-detail tree asset requested by mobile profile",
-    "Actual-road ray cast clearance checked on 788 rail samples",
-    "29 desktop image crops retain decoded source pixels exactly without resampling"
-  ],
-  "terrainTextureBytes": 89332500,
-  "mobile": {
-    "textureBytes": 6013125,
-    "decodedRGBAWithMipmaps": 112069291,
-    "uniqueImages": 305
-  },
-  "geometry": {
-    "railSamples": 788,
-    "missingRails": 0,
-    "minimumClearanceMetres": 0.05265045166015625,
-    "concreteIsland": true
-  },
-  "desktopCrop": {
-    "images": 29,
-    "downloadBytesSaved": 59014913,
-    "estimatedTextureBytesSaved": 1194885467
   }
 }

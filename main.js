@@ -7,7 +7,7 @@ const $=s=>document.querySelector(s);
 const requestedQuality=new URLSearchParams(location.search).get('quality');
 const mobileProfile=requestedQuality==='mobile'||(requestedQuality!=='original'&&(matchMedia('(pointer: coarse)').matches||innerWidth<761||(/Mac/.test(navigator.platform)&&navigator.maxTouchPoints>1)||sessionStorage.getItem('sil860-safe')==='1'));
 document.documentElement.dataset.quality=mobileProfile?'mobile':'original';
-const modelURL=name=>`./assets/${name}${mobileProfile&&['terrain','context','tree-medium','tree-low'].includes(name)?'-mobile':''}.glb?v=6.0`;
+const modelURL=name=>`./assets/${name}${mobileProfile&&['terrain','context','tree-medium','tree-low'].includes(name)?'-mobile':''}.glb?v=7.0`;
 let graphicsLost=false;
 
 const viewport=$('#viewport');const dimensions=()=>({w:viewport.clientWidth,h:viewport.clientHeight});
@@ -15,7 +15,7 @@ const scene=new THREE.Scene();scene.background=new THREE.Color('#e7ebe4');
 scene.fog=new THREE.Fog('#e7ebe4',650,1300);
 let renderer;
 try{renderer=new THREE.WebGLRenderer({antialias:!mobileProfile,alpha:false,powerPreference:'high-performance'});}catch(error){fail('WebGL is unavailable. Please use a browser with 3D graphics support.');throw error;}
-renderer.setPixelRatio(Math.min(devicePixelRatio,mobileProfile?1:1.6));renderer.setSize(dimensions().w,dimensions().h);
+renderer.setPixelRatio(Math.min(devicePixelRatio,mobileProfile?1.5:1.6));renderer.setSize(dimensions().w,dimensions().h);
 renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.22;
 renderer.shadowMap.enabled=!mobileProfile;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 $('#viewport').appendChild(renderer.domElement);renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','Drag to orbit; scroll to zoom; right-drag to pan. Arrow keys pan. R resets the view.');
@@ -32,11 +32,11 @@ const loader=new GLTFLoader();loader.setDRACOLoader(draco);
 let activeImages=0,imagesReady=0;const imageJobs=[];
 function imageTask(task){return new Promise((resolve,reject)=>{imageJobs.push({task,resolve,reject});pumpImages();});}
 function pumpImages(){while(activeImages<(mobileProfile?3:6)&&imageJobs.length){const job=imageJobs.shift();activeImages++;job.task().then(job.resolve,job.reject).finally(()=>{activeImages--;pumpImages();});}}
-loader.register(parser=>{const original=parser.loadImageSource.bind(parser);parser.loadImageSource=(index,imageLoader)=>imageTask(async()=>{for(let attempt=0;attempt<3;attempt++){try{const result=await original(index,imageLoader);imagesReady++;if(!ready)$('#load-message').textContent=`Preparing neighbourhood textures � ${imagesReady} loaded`;return result;}catch(error){delete parser.sourceCache[index];if(attempt===2)throw error;await new Promise(resolve=>setTimeout(resolve,400*(attempt+1)));}}});return{name:'SIL860_IMAGE_QUEUE'};});
+loader.register(parser=>{const original=parser.loadImageSource.bind(parser);parser.loadImageSource=(index,imageLoader)=>imageTask(async()=>{for(let attempt=0;attempt<3;attempt++){try{const result=await original(index,imageLoader);imagesReady++;if(!ready)$('#load-message').textContent=`Preparing neighbourhood textures · ${imagesReady} loaded`;return result;}catch(error){delete parser.sourceCache[index];if(attempt===2)throw error;await new Promise(resolve=>setTimeout(resolve,400*(attempt+1)));}}});return{name:'SIL860_IMAGE_QUEUE'};});
 
 const lods=[];let loaded=0,meta,ready=false;const stages=9;
 function progress(text){$('#load-message').textContent=text;$('#progress').style.width=`${++loaded/stages*100}%`;}
-function prepare(root,shadows=true){root.traverse(o=>{if(o.isMesh){o.castShadow=shadows&&!mobileProfile;o.receiveShadow=true;const mats=Array.isArray(o.material)?o.material:[o.material];for(const m of mats){m.side=THREE.DoubleSide;if(m.map)m.map.anisotropy=Math.min(mobileProfile?2:16,renderer.capabilities.getMaxAnisotropy());}}});return root;}
+function prepare(root,shadows=true){root.traverse(o=>{if(o.isMesh){o.castShadow=shadows&&!mobileProfile;o.receiveShadow=true;const mats=Array.isArray(o.material)?o.material:[o.material];for(const m of mats){m.side=THREE.DoubleSide;if(m.map)m.map.anisotropy=Math.min(mobileProfile?8:16,renderer.capabilities.getMaxAnisotropy());}}});return root;}
 async function loadModel(name,group){const result=await loader.loadAsync(modelURL(name));group.add(prepare(result.scene,name==='structure'));return result.scene;}
 function fail(text){$('#loader').classList.remove('done');$('#load-message').textContent=text;$('#status').textContent='Scene could not be loaded';if(!$('#retry')){const b=document.createElement('button');b.id='retry';b.className='error-retry';b.textContent='Reload';b.onclick=()=>location.reload();$('.loader-inner').appendChild(b);}}
 const views={site:{position:[-155,145,195],target:[0,49,0]},area:{position:[-285,320,390],target:[0,25,0]},top:{position:[-10,400,22.001],target:[-10,0,22]}};
@@ -59,7 +59,7 @@ const tramVehicles=[];const pauseButton=$('#pause-trams');
 function updatePauseButton(){pauseButton.textContent=tramPaused?'Resume traffic':'Pause traffic';pauseButton.setAttribute('aria-pressed',String(tramPaused));}
 pauseButton.onclick=()=>{tramPaused=!tramPaused;updatePauseButton();};updatePauseButton();
 async function loadTrams(){
- const response=await fetch('./assets/tram-route.json?v=6.0');if(!response.ok)throw new Error('Tram route');const route=await response.json();
+ const response=await fetch('./assets/tram-route.json?v=7.0');if(!response.ok)throw new Error('Tram route');const route=await response.json();
  routePoints=route.points.map(p=>new THREE.Vector3(p.x,p.z,-p.y));routeDistances=[0];for(let i=1;i<routePoints.length;i++)routeDistances.push(routeDistances[i-1]+routePoints[i].distanceTo(routePoints[i-1]));routeLength=routeDistances.at(-1);
  const source=prepare((await loader.loadAsync(modelURL('tram'))).scene,true);
  for(let i=0;i<3;i++){const vehicle=source.clone(true);vehicle.traverse(o=>{if(o.isMesh){o.material=o.material.clone();if(o.material.name==='Tram livery')o.material.color.set([0x28634a,0x963d34,0xb4944f][i]);}});groups.trams.add(vehicle);tramVehicles.push(vehicle);}animateTrams();
@@ -77,7 +77,7 @@ function animateTrams(){
 const movingCars=[];let carPoints=[],carDistances=[],carLength=0;
 function carPoint(d){d=((d%carLength)+carLength)%carLength;let lo=0,hi=carDistances.length-1;while(lo<hi-1){const mid=(lo+hi)>>1;if(carDistances[mid]<d)lo=mid;else hi=mid;}return carPoints[lo].clone().lerp(carPoints[hi],(d-carDistances[lo])/(carDistances[hi]-carDistances[lo]));}
 async function loadCars(){
- const response=await fetch('./assets/car-route.json?v=6.0');if(!response.ok)throw new Error('Car route');const route=await response.json();carPoints=route.points.map(p=>new THREE.Vector3(p.x,p.z,-p.y));carPoints.push(carPoints[0].clone());carDistances=[0];for(let i=1;i<carPoints.length;i++)carDistances.push(carDistances[i-1]+carPoints[i].distanceTo(carPoints[i-1]));carLength=carDistances.at(-1);
+ const response=await fetch('./assets/car-route.json?v=7.0');if(!response.ok)throw new Error('Car route');const route=await response.json();carPoints=route.points.map(p=>new THREE.Vector3(p.x,p.z,-p.y));carPoints.push(carPoints[0].clone());carDistances=[0];for(let i=1;i<carPoints.length;i++)carDistances.push(carDistances[i-1]+carPoints[i].distanceTo(carPoints[i-1]));carLength=carDistances.at(-1);
  const source=prepare((await loader.loadAsync(modelURL('car'))).scene,true);const colors=[0x223e54,0xb8b9b6,0x7e2824,0x24272b,0xc4b99e,0xe6e5de];
  for(let i=0;i<6;i++){const car=source.clone(true);car.traverse(o=>{if(o.isMesh){o.material=o.material.clone();if(o.material.name==='Car paint')o.material.color.set(colors[i]);}});groups.cars.add(car);if(i<3)movingCars.push(car);else{const p=route.parked[i-3];car.position.set(p.x,p.z,-p.y);car.rotation.y=p.heading;}}
  animateCars();
@@ -85,10 +85,10 @@ async function loadCars(){
 function animateCars(){if(!carLength)return;movingCars.forEach((car,i)=>{const d=tramTime*3.2+carLength*i/3;car.position.copy(carPoint(d));const tangent=carPoint(d+1).sub(carPoint(d-1));car.rotation.y=Math.atan2(-tangent.x,-tangent.z);});renderer.domElement.dataset.carDistance=String(Math.round(tramTime*3.2*100)/100);}
 
 async function init(){
- const response=await fetch('./assets/scene.json?v=6.0');if(!response.ok)throw new Error('scene.json?v=6.0');meta=await response.json();
+ const response=await fetch('./assets/scene.json?v=7.0');if(!response.ok)throw new Error('scene.json?v=7.0');meta=await response.json();
  await loadModel('structure',groups.structure);progress('Structure ready');
  await loadModel('roads',groups.roads);progress('Roads and tram loop ready');
- $('#loader').classList.add('done');$('#status').textContent='Loading neighbourhood�';
+ $('#loader').classList.add('done');$('#status').textContent='Loading neighbourhood…';
  await loadModel('terrain',groups.terrain);progress('Terrain ready');
  await loadModel('context',groups.context);progress('Neighbouring buildings ready');
  const trees={};for(const level of (mobileProfile?['low','medium']:['low','medium','high'])){trees[level]=prepare((await loader.loadAsync(modelURL(`tree-${level}`))).scene,level==='high');if(level!=='high')trees[level].traverse(o=>{if(o.isMesh){const convert=m=>new THREE.MeshBasicMaterial({map:m.map,color:new THREE.Color(6.5,8.0,5.3),alphaTest:.45,side:THREE.DoubleSide});o.material=Array.isArray(o.material)?o.material.map(convert):convert(o.material);o.receiveShadow=false;}});progress(`Trees: ${level} detail ready`);}
@@ -106,7 +106,7 @@ async function init(){
  await loadTrams();progress('Trams ready');await loadCars();progress('Traffic ready');
  $('#loader').classList.add('done');ready=true;$('#status').textContent=`200 m context · ${meta.buildings.length} buildings · ${positions.length} trees`;
  renderer.domElement.dataset.ready='true';
- if(mobileProfile){const maps=new Set(),images=new Set();scene.traverse(o=>{if(!o.isMesh)return;for(const m of (Array.isArray(o.material)?o.material:[o.material]))for(const value of Object.values(m))if(value?.isTexture)maps.add(value);});for(const map of maps){renderer.initTexture(map);if(map.image?.close)images.add(map.image);}for(const image of images)image.close();}
+ {const maps=new Set(),images=new Set();scene.traverse(o=>{if(!o.isMesh)return;for(const m of (Array.isArray(o.material)?o.material:[o.material]))for(const value of Object.values(m))if(value?.isTexture)maps.add(value);});for(const map of maps){renderer.initTexture(map);if(map.image?.close)images.add(map.image);}for(const image of images)image.close();}
 
 }
 init().catch(error=>{console.error(error);fail('Models could not be loaded. Check your connection or launch the included local server.');});

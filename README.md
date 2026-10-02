@@ -4,6 +4,12 @@ An interactive Blender / Three.js scene of Shau Kei Wan, Hong Kong.
 
 [Live website](https://aisbim26.github.io/sil860-3d/)
 
+## Version 7
+
+- Removed original GENERIC, INFRASTRUCTURE and WATERBODY objects from the map exports. Retained BUILDING, TERRAIN, custom roads, vehicles and replacement trees. Original vegetation FBX remains excluded.
+- Mobile buildings now use 1024 px within 85 m and 512 px beyond, with full-resolution cropped terrain pixels. Increased mobile display pixel ratio to 1.5 and anisotropic filtering to 8.
+- Both display profiles release decoded CPU image bitmaps after texture upload. Memory figures in verification.json are texture allocation estimates, not measured browser usage.
+
 ## Version 6
 
 - Phones and tablets automatically use separate lightweight terrain, building and tree textures (about 6 MB total); desktop keeps the original pixel resolution, with 29 images losslessly cropped to their used UV regions. This removes 59 MB of downloads and about 1.19 GB of estimated decoded texture allocation. Texture memory estimates are 112 MB for mobile versus 3.93 GB for the original main texture sets, including mipmaps; these are asset estimates, not measurements on an iPhone.
@@ -41,7 +47,7 @@ The existing map is retained outside the rebuilt street area. Map tiles: `11-SE-
 
 ## Run locally
 
-1. The local delivery includes the complete `assets/` and `vendor/` folders. For a repository download, extract `assets*.zip`, concatenate `update-v5.part*` in numbered order into a ZIP, and extract it over the assets.
+1. The local delivery includes the complete `assets/` and `vendor/` folders. For a repository download, extract `assets*.zip`, concatenate `update-v5.part*` in numbered order into a ZIP, and extract it over the assets. Then extract all `update-v6*.zip` and `update-v7*.zip` archives in order.
 2. Run `python serve.py`.
 3. Open http://127.0.0.1:8600 in a browser.
 
