@@ -21,7 +21,7 @@ jobs:
       - name: Assemble website
         run: |
           mkdir -p _site
-          unzip -q assets.zip -d _site
+          for archive in assets*.zip; do unzip -qo "$archive" -d _site; done
           cp index.html main.js style.css favicon.svg CREDITS.md _site/
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
