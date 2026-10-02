@@ -4,6 +4,13 @@ An interactive Blender / Three.js scene of Shau Kei Wan, Hong Kong.
 
 [Live website](https://aisbim26.github.io/sil860-3d/)
 
+## Version 6
+
+- Phones and tablets automatically use separate lightweight terrain, building and tree textures (about 6 MB total); desktop keeps the original pixel resolution, with 29 images losslessly cropped to their used UV regions. This removes 59 MB of downloads and about 1.19 GB of estimated decoded texture allocation. Texture memory estimates are 112 MB for mobile versus 3.93 GB for the original main texture sets, including mipmaps; these are asset estimates, not measurements on an iPhone.
+- Mobile skips the high-detail tree model, disables real-time shadows, caps rendering at 30 fps and limits image decode concurrency to three. Structure and roads appear before the surrounding map finishes loading. Transient image requests retry twice.
+- Filled the northwest triangular island interior with concrete texture. Rails are sampled every 0.35 m and lifted above the actual triangulated road surface; 788 exported rail samples have at least 0.052 m clearance.
+- Preserved the approved structure and all visible desktop terrain pixels; the crop output is checked against the decoded source pixels. Browser checks cover phone-sized layout and the mobile asset profile; physical iPhone Safari testing is still needed.
+
 ## Version 5
 
 - Restored all 90 terrain and ground-surface image files directly from the original map download. No resizing, JPEG re-encoding or lossy texture compression. The files total 148.35 MB; SHA-256 hashes are recorded in `assets/terrain-texture-audit.json`.

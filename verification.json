@@ -1,49 +1,84 @@
 {
-  "version": 5,
+  "version": 6,
   "files": {
     "car.glb": {
-      "sha256": "c8f55c00f698556058158ebd7c07e9ace8f48465f7d4e8bbc2585b07ca2af324",
-      "bytes": 59408
+      "bytes": 59408,
+      "sha256": "c8f55c00f698556058158ebd7c07e9ace8f48465f7d4e8bbc2585b07ca2af324"
     },
     "context.glb": {
-      "sha256": "6e89787017abd65414a4ea17e065c295bf8f3cd6f9219408071bc4b62f395dba",
-      "bytes": 1361984
+      "bytes": 1361984,
+      "sha256": "6e89787017abd65414a4ea17e065c295bf8f3cd6f9219408071bc4b62f395dba"
     },
     "roads.glb": {
-      "sha256": "2494f4df164ee650632c6b3b838295b22a5030ad288cde8e5163097783e29cb9",
-      "bytes": 404696
+      "bytes": 433272,
+      "sha256": "72928aa8aab0aec62ba6d58b56ebfd8d31ca38bcda623c9be40abd08608d9f4a"
     },
     "structure.glb": {
-      "sha256": "6ec40618aa96d9e80ce46ada534fcad883b83072e7dcaa36c9743d392c4d4dca",
-      "bytes": 1323800
+      "bytes": 1323800,
+      "sha256": "6ec40618aa96d9e80ce46ada534fcad883b83072e7dcaa36c9743d392c4d4dca"
     },
     "terrain.glb": {
-      "sha256": "2a5ecd1afc6f1dac94a2d06fd5de49bd94ed80e6338f95858e9d98118b111e68",
-      "bytes": 4480912
+      "bytes": 4488852,
+      "sha256": "e57e66652be729a07124d6dc0b646ffbc3fa7a1c5a62c793881d85621e9dfaec"
     },
     "tram.glb": {
-      "sha256": "09febf2941d73e25d46711ff283b8fd31fff37ff529b3fb5dc463afb89fd2883",
-      "bytes": 171800
+      "bytes": 171800,
+      "sha256": "09febf2941d73e25d46711ff283b8fd31fff37ff529b3fb5dc463afb89fd2883"
     },
     "tree-high.glb": {
-      "sha256": "1fe6b8adff8b739292c1c6c6af7ea9b3f8f75189baf3831bf89e5fc9d58f84c3",
-      "bytes": 1283160
+      "bytes": 1283160,
+      "sha256": "1fe6b8adff8b739292c1c6c6af7ea9b3f8f75189baf3831bf89e5fc9d58f84c3"
     },
     "tree-low.glb": {
-      "sha256": "d49a62bb8c742394ddd15203e4f3d31bb2d71dbc41ee441b950def914ed13c71",
-      "bytes": 3260
+      "bytes": 3260,
+      "sha256": "d49a62bb8c742394ddd15203e4f3d31bb2d71dbc41ee441b950def914ed13c71"
     },
     "tree-medium.glb": {
-      "sha256": "73ab00d699813c0cfc384a0182ee53543be441fc5230dc7777ea0dffc1b31030",
-      "bytes": 4920
+      "bytes": 4920,
+      "sha256": "73ab00d699813c0cfc384a0182ee53543be441fc5230dc7777ea0dffc1b31030"
+    },
+    "context-mobile.glb": {
+      "bytes": 1363756,
+      "sha256": "aebfff7db5f340f939dddf38972f0e623448581dc10ba662604843d54477f7ed"
+    },
+    "terrain-mobile.glb": {
+      "bytes": 4490180,
+      "sha256": "e21b2cb558f4b9ba5b8454b2ffb694b691d6239dab4f00bd10e5f7299b8660d4"
+    },
+    "tree-low-mobile.glb": {
+      "bytes": 3276,
+      "sha256": "fb5ab31f677b4483ae231144d76b6eb2d005b58d7e7dd1dd5ffe01672fa7ce10"
+    },
+    "tree-medium-mobile.glb": {
+      "bytes": 4932,
+      "sha256": "e0c10661aa75aed06a74c7823cadb4db15f8e3ec3b9ac301b1fcab2690f2b5b5"
     }
   },
   "checks": [
-    "90 terrain and ground image files byte-identical to originals; no resampling or re-encoding",
     "Approved V2 structure unchanged",
     "Factory Street road surface derived from CAD kerb-enclosed polygons at 0.02 m snap precision",
     "362 moving-car route samples have 1 m road clearance",
-    "Terrain source largest dimension 8192 pixels"
+    "Terrain source largest dimension 8192 pixels",
+    "Mobile asset set renders without browser errors at 390 x 844",
+    "No high-detail tree asset requested by mobile profile",
+    "Actual-road ray cast clearance checked on 788 rail samples",
+    "29 desktop image crops retain decoded source pixels exactly without resampling"
   ],
-  "terrainTextureBytes": 148347413
+  "terrainTextureBytes": 89332500,
+  "mobile": {
+    "textureBytes": 6013125,
+    "decodedRGBAWithMipmaps": 112069291,
+    "uniqueImages": 305
+  },
+  "geometry": {
+    "railSamples": 788,
+    "missingRails": 0,
+    "minimumClearanceMetres": 0.05265045166015625,
+    "concreteIsland": true
+  },
+  "desktopCrop": {
+    "images": 29,
+    "downloadBytesSaved": 59014913,
+    "estimatedTextureBytesSaved": 1194885467
+  }
 }
