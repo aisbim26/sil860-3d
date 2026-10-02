@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#e7ebe4">
+  <title>SIL860 · 筲箕灣住宅重建</title>
+  <meta name="description" content="SIL860 住宅重建三維場景：Revit 結構模型、200 米現有環境及按距離切換精細度的樹木。">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script>
+</head>
+<body>
+  <main id="viewport" aria-label="SIL860 三維模型檢視器"></main>
+  <header class="masthead">
+    <a class="identity" href="./" aria-label="SIL860 首頁"><span class="mark" aria-hidden="true">▥</span><span>SIL<span class="serif">860</span><small>RESIDENTIAL REDEVELOPMENT</small></span></a>
+    <div class="edition"><span class="dot"></span> SCENE STUDY <b>01</b></div>
+  </header>
+  <section class="intro" aria-label="項目">
+    <p class="eyebrow">SHAU KEI WAN · HONG KONG</p>
+    <h1>筲箕灣<br><span>住宅重建</span></h1>
+    <p class="subtitle">SIL860 · 結構與城市環境</p>
+    <div class="measure"><strong>200<span> m</span></strong><span>地盤中心半徑<br>現有環境範圍</span></div>
+  </section>
+  <aside class="controls" aria-label="場景控制">
+    <div class="control-heading"><span>探索場景</span><span class="tiny">VIEW CONTROLS</span></div>
+    <div class="views" role="group" aria-label="視角">
+      <button data-view="site" aria-pressed="true">地盤</button><button data-view="area" aria-pressed="false">全景</button><button data-view="top" aria-pressed="false">俯瞰</button>
+    </div>
+    <div class="layers">
+      <label><span><i class="swatch proposal"></i>重建結構</span><input id="structure-toggle" type="checkbox" checked></label>
+      <label><span><i class="swatch context"></i>周邊建築</span><input id="context-toggle" type="checkbox" checked></label>
+      <label><span><i class="swatch trees"></i>樹木</span><input id="trees-toggle" type="checkbox" checked></label>
+    </div>
+    <button class="reset" id="reset-view"><span>↗</span> 返回起始視角 <span>R</span></button>
+    <details class="notes"><summary>模型及資料說明 <span>＋</span></summary><div>
+      <p>結構源自提供的 Revit FBX。原有街市大廈已由場景移除。道路沿用現有地圖，重建留待第二版。</p>
+      <p>模型定位為初步對位：E841803 / N815475，保留 Revit 方向及標高，尚待共用座標核實。地盤線為原建築外輪廓參考，並非法定地界。</p>
+      <p>樹木位置及尺寸按影像作視覺配置，非樹木測量；近景採用 2K 材質模型，遠景降低精細度。未載入原地圖 vegetation FBX。</p>
+      <p>地圖圖幅：11-SE-13B、11-SE-8D。東側邊界距中心約 197 米，最東端約 3 米缺少地圖資料。</p>
+      <p>地圖來源：香港地政總署 3D Visualisation Map（使用者提供）。樹木：<a href="https://polyhaven.com/a/island_tree_01" target="_blank" rel="noreferrer">Poly Haven · Island Tree 01</a>，CC0。<a href="./CREDITS.md">完整來源</a></p>
+    </div></details>
+  </aside>
+  <div class="north" aria-label="北向"><span>N</span><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21"/><g id="compass-arrow"><path d="M22 7 L28 28 L22 24 L16 28 Z"/></g></svg></div>
+  <div class="legend"><span class="legend-line"></span> SIL860 <span class="legend-muted">原建築外輪廓</span></div>
+  <footer><span id="status" role="status" aria-live="polite">準備場景…</span><span class="instructions">拖曳旋轉 <i>·</i> 滾輪縮放 <i>·</i> 右鍵平移</span><span class="footer-tag">BLENDER × THREE.JS</span></footer>
+  <div class="loader" id="loader"><div class="loader-inner"><span class="eyebrow">SIL860 / 01</span><h2>正在準備城市場景</h2><div class="track"><div id="progress"></div></div><p id="load-message">讀取模型與地圖…</p></div></div>
+  <noscript>請啟用 JavaScript 以使用三維檢視器。</noscript>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
