@@ -24,6 +24,7 @@ jobs:
           for archive in assets*.zip; do unzip -qo "$archive" -d _site; done
           cat update-v5.part* > /tmp/update-v5.zip
           unzip -qo /tmp/update-v5.zip -d _site
+          for archive in update-v6*.zip; do unzip -qo "$archive" -d _site; done
           cp index.html main.js style.css favicon.svg CREDITS.md _site/
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
