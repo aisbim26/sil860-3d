@@ -4,7 +4,15 @@ An interactive Blender / Three.js scene of Shau Kei Wan, Hong Kong.
 
 [Live website](https://aisbim26.github.io/sil860-3d/)
 
-## Version 4
+## Version 5
+
+- Restored all 90 terrain and ground-surface image files directly from the original map download. No resizing, JPEG re-encoding or lossy texture compression. The files total 148.35 MB; SHA-256 hashes are recorded in `assets/terrain-texture-audit.json`.
+- Replaced the width-estimated road network within the main CAD extent with polygons enclosed by `CartoTransLine` kerbs. Factory Street now has the continuous surveyed kerb and median geometry, without building-footprint notches or spurious small paving islands.
+- CAD linework is snapped to 0.02 m. One interrupted kerb between handles 45E94 and 45F86 is connected between its surveyed endpoints. The continuation outside the supplied CAD extent retains the map-based alignment; pavement widths and materials remain visualization interpretations.
+- Adjusted the western car turn to clear the CAD median. All 362 moving-car samples have 1 m centre clearance inside the road.
+- Preserved the approved structure geometry/position and existing trams, cars, trees and English interface.
+
+## Earlier scene features
 
 - Added the northwest and southwest streets requested in the latest review. Road crossings at the map boundary remain open. Removed the white island platform and service kiosk; the island is fully brick paved.
 - Added three moving cars in the western street circuit and three parked cars beside the garden. Detailed the trams with roof vents, mirrors, wipers, lamps and handrails. Pause traffic controls both vehicle types.
@@ -26,13 +34,13 @@ The existing map is retained outside the rebuilt street area. Map tiles: `11-SE-
 
 ## Run locally
 
-1. Extract all `assets*.zip` archives into this directory, producing `assets/` and `vendor/`. The local delivery already contains these folders.
+1. The local delivery includes the complete `assets/` and `vendor/` folders. For a repository download, extract `assets*.zip`, concatenate `update-v5.part*` in numbered order into a ZIP, and extract it over the assets.
 2. Run `python serve.py`.
 3. Open http://127.0.0.1:8600 in a browser.
 
 ## GitHub Pages
 
-Pages uses GitHub Actions. `.github/workflows/pages.yml` extracts all `assets*.zip` archives and deploys the static website. Update the archives after changing assets. Three.js and Draco are bundled; no font service is required.
+Pages uses GitHub Actions. `.github/workflows/pages.yml` extracts the base archives, joins the V5 transport parts and extracts their lossless ZIP over the base assets before deployment. These transport files preserve the original image bytes. Three.js and Draco are bundled; no font service is required.
 
 ## Blender
 
