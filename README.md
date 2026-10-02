@@ -4,18 +4,20 @@ An interactive Blender / Three.js scene of Shau Kei Wan, Hong Kong.
 
 [Live website](https://aisbim26.github.io/sil860-3d/)
 
-## Version 2
+## Version 3
 
-- Reconstructed streets, brick sidewalks, kerbs and tram turning loop using government CAD `11-SE-13B.dwg`.
+- Extended the reconstructed streets, brick sidewalks and kerbs using government CAD `11-SE-13B.dwg`. The short continuation north of the CAD coverage is traced from the supplied map.
+- Added paving at the new building's north pedestrian entrance and street frontage, including the covered approach. Removed the former market outline and road direction arrows.
 - CAD rail curves with embedded steel rails and grooves; overhead wires, poles, railings, drains and road markings interpreted from the supplied street photographs.
-- Revit structure moved **2.80 m west and 0.55 m south** relative to version 1. Scale, orientation and elevations are retained.
-- Fully English interface with Site, Area, orthographic Plan and Tram loop views, plus layer controls.
+- Retained the user-confirmed Version 2 structure position and geometry: **2.80 m west and 0.55 m south** relative to version 1. GP03 was reviewed; no further structure or ground-floor wall changes were applied after the user's clarification.
+- AIS logo, English interface, translucent desktop sidebar and compact mobile controls. Views: Site, Surroundings and Plan.
+- Three simple double-decker trams follow the CAD rails at 2.4 m/s. Pause/resume and a separate tram layer are available. Vehicles re-enter at the edge of the 200 m scene.
 - Five detailed trees near the site and 310 low-detail hillside trees. Hillside placement uses green map pixels with building and crown clearance checks. No tree on the tram island.
 - 200 m site radius. Original vegetation FBX files are not loaded.
 
 ## Coordinates and interpretation
 
-HK1980 / EPSG:2326 origin: **E841803, N815475**. Alignment is based on the CAD plan and supplied images; shared Revit survey coordinates have not been supplied. The gold line is the former market footprint, not the lot boundary. CAD kerb endpoints are joined within 2 cm, and curves are sampled with a 4 cm chord tolerance. Road levels interpolate nearby CAD spot heights. Street furniture, tree sizes and locations are visual interpretations, not a measured inventory.
+HK1980 / EPSG:2326 origin: **E841803, N815475**. Alignment is based on the CAD plan and supplied images; shared Revit survey coordinates have not been supplied. The former market outline is hidden. Road levels interpolate nearby CAD spot heights. Street furniture, entrance paving, tree sizes and locations are visual interpretations, not a measured inventory.
 
 The existing map is retained outside the rebuilt street area. Map tiles: `11-SE-13B` and `11-SE-8D`; the eastern tile ends approximately 197 m from the centre. Original building `B417841546601063A0` is removed. The Revit Toposolid is excluded.
 
@@ -31,6 +33,6 @@ Pages uses GitHub Actions. `.github/workflows/pages.yml` extracts `assets.zip` a
 
 ## Blender
 
-The local delivery includes the editable `SIL860.blend`, with separate collections for terrain, surrounding buildings, structure, roads and trees. `scripts/rebuild_blender.py` rebuilds it from the web assets. The Blender master is not included in the GitHub Pages download.
+The local delivery includes the editable `SIL860.blend`, with separate collections for terrain, surrounding buildings, structure, roads, trees and animated trams. `scripts/rebuild_blender.py` rebuilds it from the web assets. The Blender master is not included in the GitHub Pages download.
 
 See [CREDITS.md](CREDITS.md) for sources.

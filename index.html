@@ -1,52 +1,12 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#e7ebe4">
-  <title>SIL860 · Residential Redevelopment</title>
-  <meta name="description" content="Explore SIL860 in Shau Kei Wan: the redevelopment structure, reconstructed streets and tram loop, within a 200 m neighbourhood.">
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css">
-  <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script>
-</head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e7ebe4"><title>SIL860 | Model review</title><meta name="description" content="SIL860 residential redevelopment, Shau Kei Wan: a 200 m model review with reconstructed streets, entrance pavements and animated trams."><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="style.css?v=3"><script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script></head>
 <body>
-  <main id="viewport" aria-label="SIL860 interactive 3D viewer"></main>
-  <header class="masthead">
-    <a class="identity" href="./" aria-label="SIL860 home"><span class="mark" aria-hidden="true">▥</span><span>SIL<span class="serif">860</span><small>RESIDENTIAL REDEVELOPMENT</small></span></a>
-    <div class="edition"><span class="dot"></span> SCENE STUDY <b>02</b></div>
-  </header>
-  <section class="intro" aria-label="Project">
-    <p class="eyebrow">SHAU KEI WAN · HONG KONG</p>
-    <h1>Shau Kei Wan<br><span>Reimagined.</span></h1>
-    <p class="subtitle">SIL860 · Structure in its urban setting</p>
-    <div class="measure"><strong>200<span> m</span></strong><span>SITE RADIUS<br>NEIGHBOURHOOD CONTEXT</span></div>
-  </section>
-  <aside class="controls" aria-label="Scene controls">
-    <div class="control-heading"><span>Explore</span><span class="tiny">VIEW CONTROLS</span></div>
-    <div class="views" role="group" aria-label="Camera views">
-      <button data-view="site" aria-pressed="true">Site</button><button data-view="area" aria-pressed="false">Area</button><button data-view="top" aria-pressed="false">Plan</button><button data-view="tram" aria-pressed="false">Tram loop</button>
-    </div>
-    <div class="layers">
-      <label><span><i class="swatch proposal"></i>Structure</span><input id="structure-toggle" type="checkbox" checked></label>
-      <label><span><i class="swatch context"></i>Buildings</span><input id="context-toggle" type="checkbox" checked></label>
-      <label><span><i class="swatch roads"></i>Roads &amp; tram loop</span><input id="roads-toggle" type="checkbox" checked></label>
-      <label><span><i class="swatch trees"></i>Trees</span><input id="trees-toggle" type="checkbox" checked></label>
-    </div>
-    <button class="reset" id="reset-view"><span>↗</span> Reset view <span>R</span></button>
-    <details class="notes"><summary>About this scene <span>＋</span></summary><div>
-      <p>The supplied Revit structure replaces the former Shau Kei Wan Market. The model has moved 2.80 m west and 0.55 m south to align with the CAD plan, retaining its scale, orientation and levels.</p>
-      <p>Rebuilt roads, kerbs and the tram turning loop follow government drawing 11-SE-13B. Rails follow the CAD curves. Paving, railings, poles and road markings interpret the supplied street photographs.</p>
-      <p>Plan view uses an orthographic camera. The gold line marks the former building footprint, not a legal lot boundary. Visual positioning remains subject to shared survey coordinates.</p>
-      <p>Five detailed trees remain near the site. The hillside uses 310 low-detail trees, screened against green map areas and CAD building footprints. The tram island tree has been removed. Tree positions and sizes are illustrative.</p>
-      <p>Map tiles: 11-SE-13B and 11-SE-8D. The eastern tile ends about 197 m from the centre. Source vegetation FBX files are excluded.</p>
-      <p>Map and CAD: © Hong Kong SAR Government, Lands Department, supplied by the user. Trees: <a href="https://polyhaven.com/a/island_tree_01" target="_blank" rel="noreferrer">Poly Haven · Island Tree 01</a>, CC0. <a href="./CREDITS.md">Full credits</a></p>
-    </div></details>
-  </aside>
-  <div class="north" aria-label="North"><span>N</span><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21"/><g id="compass-arrow"><path d="M22 7 L28 28 L22 24 L16 28 Z"/></g></svg></div>
-  <div class="legend"><span class="legend-line"></span> SIL860 <span class="legend-muted">Former market outline</span></div>
-  <footer><span id="status" role="status" aria-live="polite">Preparing scene…</span><span class="instructions">Drag to orbit <i>·</i> Scroll to zoom <i>·</i> Right-drag to pan</span><span class="footer-tag">BLENDER × THREE.JS</span></footer>
-  <div class="loader" id="loader"><div class="loader-inner"><span class="eyebrow">SIL860 / 02</span><h2>Building the neighbourhood</h2><div class="track"><div id="progress"></div></div><p id="load-message">Loading models and map…</p></div></div>
-  <noscript>Enable JavaScript to use the 3D viewer.</noscript>
-  <script type="module" src="./main.js"></script>
-</body>
-</html>
+<header class="masthead"><img src="./assets/ais-logo.png" alt="AIS" width="116" height="58"><div><p>RESIDENTIAL REDEVELOPMENT AT</p><h1>SIL860 · SHAU KEI WAN</h1></div><span>MODEL REVIEW <b>03</b></span></header>
+<aside class="controls" aria-label="Project explorer">
+ <div class="project-heading"><p class="eyebrow">PROJECT EXPLORER</p><h2>Shau Kei<br><em>Wan.</em></h2><p class="intro">Residential redevelopment<br>200 m neighbourhood context</p></div>
+ <section class="view-section"><h3>Views</h3><div class="views" role="group" aria-label="Camera views"><button data-view="site" aria-pressed="true">Site</button><button data-view="area" aria-pressed="false">Surroundings</button><button data-view="top" aria-pressed="false">Plan</button></div></section>
+ <section class="layers"><h3>Layers</h3><label><input id="structure-toggle" type="checkbox" checked>Project structure</label><label><input id="context-toggle" type="checkbox" checked>Buildings</label><label><input id="roads-toggle" type="checkbox" checked>Streets &amp; pavements</label><label><input id="trees-toggle" type="checkbox" checked>Trees</label><label><input id="trams-toggle" type="checkbox" checked>Trams</label></section>
+ <details class="notes"><summary>About this scene <span>＋</span></summary><div><p>The Revit structure retains its approved version 2 position and geometry. The entrance passage and street frontage have been repaved. The former market outline has been removed.</p><p>Roads and the turning loop follow government drawing 11-SE-13B. The road continuation north of the CAD sheet is interpreted from the supplied 3D map. Street furniture and finishes interpret the reference photographs.</p><p>Three simplified Hong Kong double-decker trams follow the centre between the CAD rails. Vehicles leave and re-enter at the edge of the scene. Use Pause trams to stop the animation.</p><p>Five detailed trees near the site; 310 low-detail hillside trees. No source vegetation FBX is loaded. Locations and street details are visual interpretations.</p><p>Map and CAD: © Hong Kong SAR Government, Lands Department, supplied by the user. Trees: Poly Haven, CC0. Company logo supplied through the user's reference website. <a href="./CREDITS.md">Full credits</a></p></div></details>
+</aside>
+<main id="viewport" aria-label="SIL860 interactive 3D viewer"><div class="actions"><button id="reset-view">Reset view</button><button id="pause-trams" aria-pressed="false">Pause trams</button></div><div class="north" aria-label="North"><span>N</span><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21"/><g id="compass-arrow"><path d="M22 7 L28 28 L22 24 L16 28 Z"/></g></svg></div><div class="loader" id="loader"><div class="loader-inner"><span class="eyebrow">SIL860 / 03</span><h2>Building the neighbourhood</h2><div class="track"><div id="progress"></div></div><p id="load-message">Loading models and map…</p></div></div></main>
+<footer><span id="status" role="status" aria-live="polite">Preparing scene…</span><span class="instructions">Drag to orbit · Scroll to zoom · Right-drag to pan</span></footer><noscript>Enable JavaScript to use the 3D viewer.</noscript><script type="module" src="main.js?v=3"></script></body></html>
