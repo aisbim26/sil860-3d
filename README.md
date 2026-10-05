@@ -4,6 +4,12 @@ An interactive Blender / Three.js scene of Shau Kei Wan, Hong Kong.
 
 [Live website](https://aisbim26.github.io/sil860-3d/)
 
+## Version 8
+
+- Corrected the northern road beyond CAD coverage by tracing both kerbs from the original terrain image. Joined the revised width to the CAD road at local northing 124 m; map-edge ends remain open.
+- Mobile controls now use a 64 px bottom toolbar, with an expandable Layers panel and 44 px touch targets. Removed About this scene.
+- Checked 331 northern road samples against terrain: no buried surface. Rechecked all 788 rail samples with no missing rails.
+
 ## Version 7
 
 - Removed original GENERIC, INFRASTRUCTURE and WATERBODY objects from the map exports. Retained BUILDING, TERRAIN, custom roads, vehicles and replacement trees. Original vegetation FBX remains excluded.
@@ -47,7 +53,7 @@ The existing map is retained outside the rebuilt street area. Map tiles: `11-SE-
 
 ## Run locally
 
-1. The local delivery includes the complete `assets/` and `vendor/` folders. For a repository download, extract `assets*.zip`, concatenate `update-v5.part*` in numbered order into a ZIP, and extract it over the assets. Then extract all `update-v6*.zip` and `update-v7*.zip` archives in order.
+1. The local delivery includes the complete `assets/` and `vendor/` folders. For a repository download, extract `assets*.zip`, concatenate `update-v5.part*` in numbered order into a ZIP, and extract it over the assets. Then extract all `update-v6*.zip` and `update-v7*.zip` archives in order, followed by `update-v8.zip`.
 2. Run `python serve.py`.
 3. Open http://127.0.0.1:8600 in a browser.
 

@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "checks": [
     "Only T-prefixed map roots remain in terrain; only B-prefixed map roots remain in context",
     "Approved structure unchanged",
@@ -65,8 +65,8 @@
       "sha256": "fccc1040d91226b237723a3680dad8864874109cd11b23c9e533a61af4133ca7"
     },
     "roads.glb": {
-      "bytes": 433272,
-      "sha256": "72928aa8aab0aec62ba6d58b56ebfd8d31ca38bcda623c9be40abd08608d9f4a"
+      "bytes": 429828,
+      "sha256": "f8ebdde49fff55f59aef61e3c97b2e7708e8590b8eae177916256bf71b690723"
     },
     "structure.glb": {
       "bytes": 1323800,
@@ -104,5 +104,22 @@
       "bytes": 4920,
       "sha256": "73ab00d699813c0cfc384a0182ee53543be441fc5230dc7777ea0dffc1b31030"
     }
+  },
+  "roadCorrection": {
+    "source": "Original terrain orthophoto north of supplied CAD coverage; joins CAD edges at local y=124",
+    "surfaceSamples": 331,
+    "buriedSamples": 0,
+    "rails": {
+      "railSamples": 788,
+      "missingRails": 0,
+      "minimumClearanceMetres": 0.05202484130859375,
+      "concreteIsland": true
+    }
+  },
+  "mobileControls": {
+    "collapsedHeightCssPixels": 64,
+    "minimumTouchHeightCssPixels": 44,
+    "layersPanel": "collapsed by default; close button, outside tap and Escape",
+    "aboutRemoved": true
   }
 }
